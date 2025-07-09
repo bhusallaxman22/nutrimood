@@ -1,7 +1,8 @@
 import axios from 'axios';
 import moodToNutrition from './mood-to-nutrition.json';
-
-const OPENAI_API_KEY = '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';
+import {
+    OPENAI_API_KEY
+} from "@env";
 
 const openai = axios.create({
     baseURL: 'https://openrouter.ai/api/v1',
