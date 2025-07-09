@@ -1,50 +1,60 @@
-# Welcome to your Expo app 👋
+# Nutrition App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a React Native application built with Expo that helps users improve their mental and physical well-being by matching their emotions with food and nutrition suggestions. The app is designed using the atomic design principle for a modular and scalable UI.
 
-## Get started
+## Core Features
 
-1. Install dependencies
+- **Mood Input**: Users can manually input their mood or connect to wearables for automatic mood detection.
+- **Nutrition Suggestions**: Personalized food and supplement suggestions based on the user's mood and goals.
+- **Goal-Based Personalization**: Users can set goals like "Energize," "Calm," or "Focus" to receive tailored suggestions.
+- **Feedback and Mood Tracking**: Users can provide feedback on the suggestions and track their mood over time.
+- **Insights Dashboard**: A dashboard to visualize mood trends and the effectiveness of the suggestions.
 
+## Tech Stack
+
+- **Frontend**: React Native with Expo
+- **UI**: Atomic Design
+- **Backend**: Firebase (Authentication and Database)
+- **AI**: OpenAI for personalized suggestions
+
+## Project Structure
+
+The project follows the atomic design methodology, with the UI components organized as follows:
+
+- `src/components/atoms`: Basic building blocks of the UI (e.g., Button, Input, Text).
+- `src/components/molecules`: Groups of atoms that form a more complex component (e.g., MoodSelector, GoalSelector).
+- `src/components/organisms`: Combinations of molecules that create a section of the UI (e.g., MoodAndGoalForm).
+- `src/components/templates`: The overall layout of a screen.
+- `src/screens`: The different screens of the application.
+- `src/navigation`: The navigation logic of the app.
+- `src/services`: Services for interacting with APIs (e.g., Firebase, OpenAI).
+- `src/store`: State management for the application.
+- `src/theme`: The theme and styling of the app.
+- `src/assets`: Images, fonts, and other assets.
+
+## Getting Started
+
+1. **Install dependencies**:
    ```bash
    npm install
    ```
-
-2. Start the app
-
+2. **Run the app**:
    ```bash
-   npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+## Roadmap
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [x] Set up the project with Expo.
+- [x] Create the directory structure for atomic design.
+- [x] Create atom components (`Button`, `Input`).
+- [x] Create molecule components (`MoodSelector`, `GoalSelector`).
+- [x] Create organism components (`MoodAndGoalForm`).
+- [ ] Create the `HomeScreen`.
+- [ ] Set up navigation.
+- [ ] Update `App.tsx` to use the navigation.
+- [ ] Set up Firebase for authentication and database.
+- [ ] Integrate OpenAI for personalized suggestions.
+- [ ] Create the `DashboardScreen`.
+- [ ] Implement mood tracking and feedback.
+- [ ] Connect to wearables for automatic mood detection.

@@ -1,0 +1,260 @@
+import { StyleSheet } from 'react-native';
+import { colors, typography, spacing, dimensions } from '../../theme/materialDesign';
+
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    contentContainer: {
+        padding: spacing.md,
+        paddingTop: spacing.lg,
+        paddingBottom: spacing.xxl * 2,
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: spacing.lg,
+        paddingHorizontal: spacing.xs,
+    },
+    backButton: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: spacing.sm,
+    },
+    backIcon: {
+        fontSize: 16,
+        color: colors.onSurface,
+        fontWeight: '600',
+    },
+    headerContent: {
+        flex: 1,
+    },
+    headerTitle: {
+        ...typography.body1,
+        color: colors.onSurface,
+        fontWeight: '700',
+        marginBottom: spacing.xs,
+    },
+    headerSubtitle: {
+        ...typography.caption,
+        color: colors.onSurfaceVariant,
+        textTransform: 'capitalize',
+    },
+    shareButton: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: spacing.sm,
+    },
+    shareIcon: {
+        fontSize: 14,
+        color: colors.primary,
+        fontWeight: '600',
+    },
+    mainCard: {
+        marginBottom: spacing.md,
+        padding: spacing.lg,
+    },
+    mealHeader: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+    },
+    mealEmoji: {
+        fontSize: 36,
+        marginRight: spacing.sm,
+        marginTop: spacing.xs,
+    },
+    mealInfo: {
+        flex: 1,
+    },
+    mealName: {
+        ...typography.h4,
+        color: colors.onSurface,
+        fontWeight: '700',
+        marginBottom: spacing.sm,
+        lineHeight: 26,
+    },
+    mealDescription: {
+        ...typography.body2,
+        color: colors.onSurfaceVariant,
+        lineHeight: 20,
+        marginBottom: spacing.sm,
+    },
+    prepTime: {
+        ...typography.caption,
+        color: colors.primary,
+        fontWeight: '600',
+        backgroundColor: 'rgba(103, 80, 164, 0.1)',
+        paddingHorizontal: spacing.sm,
+        paddingVertical: spacing.xs,
+        borderRadius: 8,
+        alignSelf: 'flex-start',
+    },
+    sectionCard: {
+        marginBottom: spacing.md,
+        padding: spacing.md,
+    },
+    sectionTitle: {
+        ...typography.body1,
+        color: colors.onSurface,
+        fontWeight: '600',
+        marginBottom: spacing.sm,
+    },
+    ingredientItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: spacing.sm,
+        paddingBottom: spacing.sm,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(0, 0, 0, 0.05)',
+    },
+    ingredientEmoji: {
+        fontSize: 20,
+        marginRight: spacing.sm,
+        marginTop: spacing.xs,
+    },
+    ingredientInfo: {
+        flex: 1,
+    },
+    ingredientName: {
+        ...typography.body2,
+        color: colors.onSurface,
+        fontWeight: '600',
+        marginBottom: spacing.xs,
+    },
+    ingredientBenefit: {
+        ...typography.caption,
+        color: colors.onSurfaceVariant,
+        lineHeight: 16,
+    },
+    timingWhen: {
+        ...typography.body2,
+        color: colors.onSurface,
+        fontWeight: '600',
+        marginBottom: spacing.sm,
+    },
+    timingWhy: {
+        ...typography.caption,
+        color: colors.onSurfaceVariant,
+        lineHeight: 16,
+    },
+    stepItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: spacing.sm,
+    },
+    stepNumber: {
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        backgroundColor: colors.primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: spacing.sm,
+        marginTop: spacing.xs,
+    },
+    stepNumberText: {
+        ...typography.caption,
+        color: colors.onPrimary,
+        fontWeight: '700',
+        fontSize: 10,
+    },
+    stepText: {
+        ...typography.caption,
+        color: colors.onSurface,
+        flex: 1,
+        lineHeight: 16,
+    },
+    tipItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: spacing.xs,
+    },
+    tipBullet: {
+        ...typography.body2,
+        color: colors.primary,
+        fontWeight: '700',
+        marginRight: spacing.xs,
+        marginTop: 1,
+    },
+    tipText: {
+        ...typography.caption,
+        color: colors.onSurface,
+        flex: 1,
+        lineHeight: 16,
+    },
+    nutritionCard: {
+        marginBottom: spacing.lg,
+        padding: spacing.md,
+        backgroundColor: 'rgba(103, 80, 164, 0.05)',
+        borderWidth: 1,
+        borderColor: 'rgba(103, 80, 164, 0.2)',
+    },
+    nutritionRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: spacing.sm,
+        paddingBottom: spacing.xs,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(103, 80, 164, 0.1)',
+    },
+    caloriesLabel: {
+        ...typography.body2,
+        color: colors.onSurface,
+        fontWeight: '500',
+    },
+    caloriesValue: {
+        ...typography.body1,
+        color: colors.primary,
+        fontWeight: '700',
+    },
+    nutrientsContainer: {
+        marginTop: spacing.sm,
+    },
+    nutrientsLabel: {
+        ...typography.caption,
+        color: colors.onSurface,
+        fontWeight: '500',
+        marginBottom: spacing.sm,
+    },
+    nutrientTags: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: spacing.xs,
+    },
+    nutrientTag: {
+        backgroundColor: colors.primary,
+        paddingHorizontal: spacing.sm,
+        paddingVertical: spacing.xs,
+        borderRadius: 8,
+    },
+    nutrientTagText: {
+        ...typography.caption,
+        color: colors.onPrimary,
+        fontWeight: '600',
+        fontSize: 10,
+        textTransform: 'capitalize',
+    },
+    actionButtons: {
+        gap: spacing.sm,
+    },
+    actionButton: {
+        marginBottom: spacing.xs,
+    },
+    feedbackButtons: {
+        flexDirection: 'row',
+        gap: spacing.sm,
+    },
+    backToHomeButton: {
+        backgroundColor: colors.secondary,
+        marginTop: spacing.sm,
+    },
+});
