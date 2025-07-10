@@ -21,6 +21,11 @@ export function ThemedText({
                 type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
                 type === 'subtitle' ? styles.subtitle : undefined,
                 type === 'link' ? styles.link : undefined,
+                type === 'caption' ? styles.caption : undefined,
+                type === 'overline' ? styles.overline : undefined,
+                type === 'hero' ? styles.hero : undefined,
+                type === 'vibrant' ? styles.vibrant : undefined,
+                type === 'neon' ? styles.neon : undefined,
                 style,
             ]}
             {...rest}
