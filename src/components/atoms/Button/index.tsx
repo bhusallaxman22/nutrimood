@@ -30,7 +30,8 @@ const Button: React.FC<ButtonProps> = ({
         </View>
     );
 
-    if (variant === 'vibrant' || variant === 'electric' || variant === 'primary') {
+    if (variant === 'vibrant' || variant === 'electric' || variant === 'primary' || 
+        variant === 'cosmic' || variant === 'aurora' || variant === 'volcano' || variant === 'maximalist') {
         return (
             <TouchableOpacity
                 style={[buttonStyle, style, disabled && styles.disabled]}

@@ -335,7 +335,7 @@ const HomeScreen: React.FC = () => {
     const [greeting, subGreeting] = getGreeting();
 
     return (
-        <GlassBackground gradient={colors.gradients.warm} variant="subtle">
+        <GlassBackground gradient={colors.gradients.maximalist} variant="subtle">
             <StatusBar
                 barStyle="dark-content"
                 backgroundColor="transparent"
@@ -514,7 +514,7 @@ const HomeScreen: React.FC = () => {
                                     <Button
                                         title="📱 Get Another Suggestion"
                                         onPress={resetQuickMoods}
-                                        variant="outline"
+                                        variant="maximalist"
                                         style={styles.anotherSuggestionButton}
                                     />
                                 </View>
@@ -599,7 +599,7 @@ const HomeScreen: React.FC = () => {
                             <Button
                                 title="Sign Out"
                                 onPress={handleLogout}
-                                variant="outline"
+                                variant="volcano"
                                 style={styles.logoutButton}
                             />
                         </View>
