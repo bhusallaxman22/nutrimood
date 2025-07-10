@@ -35,16 +35,16 @@ export const styles = StyleSheet.create({
         color: colors.onSurfaceVariant,
     },
     card: {
-        marginBottom: spacing.lg, // Reduced from spacing.xl
-        padding: spacing.lg, // Reduced from spacing.xl
-        minHeight: 140, // Reduced from 180
+        marginBottom: spacing.lg,
+        padding: spacing.xl, // Increased for better content display
+        minHeight: 200, // Increased for proper text display
     },
     cardTitle: {
         ...typography.h3,
         color: colors.onSurface,
-        marginBottom: spacing.md, // Reduced from spacing.lg
+        marginBottom: spacing.lg, // Increased for better spacing
         fontWeight: '700',
-        fontSize: 20, // Reduced from 22
+        fontSize: 22, // Increased for better readability
     },
     moodText: {
         ...typography.body1,

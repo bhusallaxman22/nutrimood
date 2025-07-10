@@ -46,10 +46,16 @@ export const createPost = async (
 
         setPostText('');
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        Alert.alert('Success', 'Your post has been shared!');
+        Alert.alert('Success', 'Your post has been shared! It should appear in the feed shortly.');
     } catch (error) {
         console.error('Error creating post:', error);
-        Alert.alert('Error', `Failed to create post: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        let errorMessage = 'Unknown error';
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        } else if (typeof error === 'string') {
+            errorMessage = error;
+        }
+        Alert.alert('Error', `Failed to create post: ${errorMessage}`);
     } finally {
         setPosting(false);
     }
