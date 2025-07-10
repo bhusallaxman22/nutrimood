@@ -6,6 +6,7 @@ export { default as ProfileScreen } from './ProfileScreen';
 export { default as DashboardScreen } from './DashboardScreen';
 export { default as MindfulnessScreen } from './MindfulnessScreen';
 export { default as SettingsScreen } from './SettingsScreen';
+export { default as ProfileSettingsScreen } from './ProfileSettingsScreen';
 export { default as OnboardingScreen } from './OnboardingScreen';
 export { default as MoodTrendsScreen } from './MoodTrendsScreen';
 export { default as NewSuggestionScreen } from './NewSuggestionScreen';

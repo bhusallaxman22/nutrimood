@@ -7,6 +7,7 @@ import SignUpScreen from '../../screens/SignUpScreen';
 import OnboardingScreen from '../../screens/OnboardingScreen';
 import SuggestionScreen from '../../screens/NewSuggestionScreen';
 import SuggestionsHistoryScreen from '../../screens/SuggestionsHistoryScreen';
+import ProfileSettingsScreen from '../../screens/ProfileSettingsScreen';
 import TabNavigator from '../TabNavigator';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../theme/materialDesign';
@@ -82,17 +83,15 @@ const AppNavigator: React.FC = () => {
             {isAuthenticated ? (
                 <>
                     {!hasSeenOnboarding ? (
-                        <Stack.Screen
-                            name="Onboarding"
-                            children={() => (
-                                <OnboardingScreen onComplete={handleOnboardingComplete} />
-                            )}
-                        />
+                        <Stack.Screen name="Onboarding">
+                            {() => <OnboardingScreen onComplete={handleOnboardingComplete} />}
+                        </Stack.Screen>
                     ) : (
                         <>
                             <Stack.Screen name="MainTabs" component={TabNavigator} />
                             <Stack.Screen name="Suggestion" component={SuggestionScreen} />
                             <Stack.Screen name="SuggestionsHistory" component={SuggestionsHistoryScreen} />
+                            <Stack.Screen name="ProfileSettings" component={ProfileSettingsScreen} />
                         </>
                     )}
                 </>

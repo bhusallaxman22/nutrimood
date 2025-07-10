@@ -69,7 +69,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingTop: spacing.xs,
+        paddingTop: spacing.sm, // Increased for better spacing
+        marginTop: spacing.xs,
     },
     characterCount: {
         ...typography.caption,
@@ -79,7 +80,7 @@ export const styles = StyleSheet.create({
     postButton: {
         paddingHorizontal: spacing.lg,
         paddingVertical: spacing.sm,
-        minWidth: 80,
+        minWidth: 90, // Increased for better button size
         elevation: 2,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },

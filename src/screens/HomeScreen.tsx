@@ -287,24 +287,26 @@ const HomeScreen: React.FC = () => {
         setTodaysMood(mood);
         setShowQuickMoods(false);
 
-        // Immediately show loading and get AI suggestion without asking for goals
+        // Only track and save the mood, no AI suggestion
         setLoading(true);
 
         try {
-            const suggestion = await getNutritionSuggestion(mood, 'General Wellness');
+            // Save mood data using database service
+            await moodService.addMoodEntry(mood, 'General Wellness');
 
-            // Save to database
-            await handleSubmit(mood, 'General Wellness');
+            // Update streak when mood is submitted
+            setStreakCount(prev => prev + 1);
+            animateStreak();
 
-            // Navigate directly to suggestion with the AI response
-            navigation.navigate('Suggestion', {
-                suggestion,
-                mood,
-                goal: 'General Wellness'
-            });
+            // Show success message
+            Alert.alert(
+                '✅ Mood Tracked!',
+                'Your mood has been recorded successfully.',
+                [{ text: 'OK', style: 'default' }]
+            );
         } catch (error) {
-            console.error('Error getting suggestion:', error);
-            Alert.alert('Error', 'Failed to get suggestion. Please try again.');
+            console.error('Error saving mood data:', error);
+            Alert.alert('Error', 'Could not save your mood at this time.');
         } finally {
             setLoading(false);
         }
@@ -678,7 +680,7 @@ const styles = StyleSheet.create({
     },
     statCard: {
         flex: 1,
-        minWidth: 100,
+        minWidth: 110, // Increased for better content display
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         borderRadius: 20,
         padding: spacing.lg,
@@ -696,7 +698,7 @@ const styles = StyleSheet.create({
     statContent: {
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: 80,
+        minHeight: 100, // Increased for better text display
     },
     statEmoji: {
         fontSize: 28,

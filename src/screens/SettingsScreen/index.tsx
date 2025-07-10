@@ -4,10 +4,8 @@ import {
     Text,
     ScrollView,
     StatusBar,
-    Alert,
     SafeAreaView,
     TouchableOpacity,
-    TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -19,17 +17,13 @@ import { colors } from '../../theme/materialDesign';
 import { RootStackParamList } from '../../navigation/types';
 import { UserProfile } from '../../services/database';
 
-import { SettingsFormData } from './types';
 import {
     loadUserProfile,
-    createFormDataFromProfile,
-    saveUserProfile,
     openPrivacyPolicy,
     showAboutDialog,
     handleLogout,
     handleDeleteAccount,
     getUserDisplayInfo,
-    updateFormField,
 } from './utils';
 import { styles } from './styles';
 
@@ -40,19 +34,6 @@ const SettingsScreen: React.FC = () => {
     const [userEmail, setUserEmail] = useState<string>('');
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
-    const [saving, setSaving] = useState(false);
-    const [editing, setEditing] = useState(false);
-    const [formData, setFormData] = useState<SettingsFormData>({
-        displayName: '',
-        age: '',
-        height: '',
-        weight: '',
-        activityLevel: 'moderate',
-        location: '',
-        bio: '',
-        dietaryRestrictions: [],
-        healthGoals: [],
-    });
 
     useEffect(() => {
         loadProfile();
@@ -63,10 +44,6 @@ const SettingsScreen: React.FC = () => {
             const { userEmail: email, profile: userProfile } = await loadUserProfile();
             setUserEmail(email);
             setProfile(userProfile);
-
-            if (userProfile) {
-                setFormData(createFormDataFromProfile(userProfile));
-            }
         } catch (error) {
             console.error('Error loading profile:', error);
         } finally {
@@ -74,23 +51,8 @@ const SettingsScreen: React.FC = () => {
         }
     };
 
-    const handleSaveProfile = async () => {
-        setSaving(true);
-        try {
-            await saveUserProfile(formData, profile);
-            await loadProfile();
-            setEditing(false);
-            Alert.alert('Success', 'Profile updated successfully!');
-        } catch (error) {
-            console.error('Error updating profile:', error);
-            Alert.alert('Error', 'Failed to update profile. Please try again.');
-        } finally {
-            setSaving(false);
-        }
-    };
-
     const handleAccountSettings = () => {
-        setEditing(true);
+        navigation.navigate('ProfileSettings');
     };
 
     if (loading) {
@@ -178,36 +140,6 @@ const SettingsScreen: React.FC = () => {
                         </GlassCard>
                     </View>
 
-                    {editing && (
-                        <GlassCard style={styles.editCard} variant="elevated">
-                            <Text style={styles.editTitle}>Edit Profile</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Display Name"
-                                value={formData.displayName}
-                                onChangeText={(text) => updateFormField('displayName', text, setFormData)}
-                            />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Bio"
-                                value={formData.bio}
-                                onChangeText={(text) => updateFormField('bio', text, setFormData)}
-                                multiline
-                                numberOfLines={3}
-                            />
-                            <View style={styles.editActions}>
-                                <TouchableOpacity style={styles.cancelButton} onPress={() => setEditing(false)}>
-                                    <Text style={styles.cancelButtonText}>Cancel</Text>
-                                </TouchableOpacity>
-                                <Button
-                                    title={saving ? "Saving..." : "Save"}
-                                    onPress={handleSaveProfile}
-                                    disabled={saving}
-                                    style={styles.saveButton}
-                                />
-                            </View>
-                        </GlassCard>
-                    )}
                 </ScrollView>
             </SafeAreaView>
         </GlassBackground>

@@ -17,4 +17,5 @@ export type RootStackParamList = {
     SuggestionsHistory: undefined;
     Dashboard: undefined;
     Mindfulness: undefined;
+    ProfileSettings: undefined;
 };
