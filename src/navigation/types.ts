@@ -9,13 +9,14 @@ export type TabNavigatorParamList = {
 };
 
 export type RootStackParamList = {
-    Login: undefined;
-    SignUp: undefined;
-    Onboarding: undefined;
-    MainTabs: undefined;
-    Suggestion: { suggestion: NutritionSuggestion; mood: string; goal: string };
-    SuggestionsHistory: undefined;
-    Dashboard: undefined;
-    Mindfulness: undefined;
-    ProfileSettings: undefined;
+  Login: undefined;
+  SignUp: undefined;
+  Onboarding: undefined;
+  MainTabs: undefined;
+  Suggestion: { suggestion: NutritionSuggestion; mood: string; goal: string };
+  SuggestionsHistory: undefined;
+  Dashboard: undefined;
+  Mindfulness: undefined;
+  ProfileSettings: undefined;
+  WearablePermissions: undefined;
 };

@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-    View,
-    StyleSheet,
-    Alert,
-    ActivityIndicator,
-    Text,
-    StatusBar,
-    ScrollView,
-    KeyboardAvoidingView,
-    Platform,
-    Animated,
-    TouchableOpacity,
-    Dimensions,
-    Easing,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import * as Haptics from 'expo-haptics';
-import MoodAndGoalForm from '../components/organisms/MoodAndGoalForm';
-import Button from '../components/atoms/Button';
-import GlassBackground from '../components/templates/GlassBackground';
-import GlassCard from '../components/molecules/GlassCard';
-import { moodService, suggestionsService, nutritionSuggestionsService } from '../services/database';
-import { auth } from '../services/firebase';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import * as Haptics from 'expo-haptics';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+    ActivityIndicator,
+    Alert,
+    Animated,
+    Dimensions,
+    Easing,
+    KeyboardAvoidingView,
+    Platform,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Button from '../components/atoms/Button';
+import GlassCard from '../components/molecules/GlassCard';
+import MoodAndGoalForm from '../components/organisms/MoodAndGoalForm';
+import { GlassBackground } from '../components/templates/GlassBackground';
 import { RootStackParamList } from '../navigation/types';
+import { moodService, nutritionSuggestionsService } from '../services/database';
+import { auth } from '../services/firebase';
 import { getNutritionSuggestion, NutritionSuggestion } from '../services/openai';
-import { colors, typography, spacing, dimensions } from '../theme/materialDesign';
+import { colors, dimensions, spacing, typography } from '../theme/materialDesign';
 
 const { width } = Dimensions.get('window');
 
@@ -210,41 +209,23 @@ const HomeScreen: React.FC = () => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     };
 
-    const handleSubmit = async (mood: string, goal: string) => {
-        setLoading(true);
-        setTodaysMood(mood);
-        setInteractionCount(prev => prev + 1);
-
-        // Haptic feedback for better interaction
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-
-        try {
-            // Save mood data using database service
-            await moodService.addMoodEntry(mood, goal);
-
-            // Update streak when mood is submitted
-            setStreakCount(prev => prev + 1);
-            animateStreak();
-
-            // Show success message with clear options
-            Alert.alert(
-                '✅ Mood Tracked!',
-                'Your mood has been recorded successfully. What would you like to do next?',
-                [
-                    { text: 'Just Track', style: 'cancel' },
-                    {
-                        text: '✨ Get AI Suggestion',
-                        style: 'default',
-                        onPress: () => handleGetSuggestion(mood, goal)
-                    }
-                ]
-            );
-        } catch (error) {
-            console.error('Error saving mood data:', error);
-            Alert.alert('Error', 'Could not save your mood at this time.');
-        }
-        setLoading(false);
-    };
+        const handleSubmit = async (mood: string, goal: string) => {
+            setLoading(true);
+            setTodaysMood(mood);
+            setInteractionCount(prev => prev + 1);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            try {
+                await moodService.addMoodEntry(mood, goal);
+                setStreakCount(prev => prev + 1);
+                animateStreak();
+                // Directly proceed to fetch suggestion (removed intermediate alert)
+                await handleGetSuggestion(mood, goal);
+            } catch (error) {
+                console.error('Error saving mood data:', error);
+                Alert.alert('Error', 'Could not save your mood at this time.');
+                setLoading(false);
+            }
+        };
 
     const handleGetSuggestion = async (mood: string, goal: string) => {
         setLoading(true);
@@ -399,7 +380,7 @@ const HomeScreen: React.FC = () => {
                         >
                             <Text style={styles.greetingText}>{greeting}</Text>
                             <Text style={styles.titleText}>{subGreeting}</Text>
-                            <Text style={styles.subtitleText}>Let's find the perfect nutrition for your mood and goals</Text>
+                            <Text style={styles.subtitleText}>Let&apos;s find the perfect nutrition for your mood and goals</Text>
                         </Animated.View>
 
                         {/* Welcome Guide for new users */}
@@ -408,7 +389,7 @@ const HomeScreen: React.FC = () => {
                                 <Text style={styles.welcomeEmoji}>👋</Text>
                                 <Text style={styles.welcomeTitle}>Welcome to Your Wellness Journey!</Text>
                                 <Text style={styles.welcomeText}>
-                                    Get started by selecting how you're feeling below. Our AI will instantly provide personalized nutrition suggestions for you.
+                                    Get started by selecting how you&apos;re feeling below. Our AI will instantly provide personalized nutrition suggestions for you.
                                 </Text>
                             </GlassCard>
                         )}
@@ -506,7 +487,7 @@ const HomeScreen: React.FC = () => {
                         {todaysMood && (
                             <GlassCard style={styles.summaryCard} variant="elevated">
                                 <View style={styles.summaryContent}>
-                                    <Text style={styles.summaryTitle}>🌟 Today's Wellness</Text>
+                                    <Text style={styles.summaryTitle}>🌟 Today&apos;s Wellness</Text>
                                     <View style={styles.todayMoodDisplay}>
                                         <Text style={styles.currentMoodEmoji}>
                                             {quickMoods.find(m => m.label === todaysMood)?.emoji || '😊'}
@@ -680,41 +661,44 @@ const styles = StyleSheet.create({
     },
     statCard: {
         flex: 1,
-        minWidth: 110, // Increased for better content display
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        borderRadius: 20,
-        padding: spacing.lg,
+        minWidth: 130,
+        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+        borderRadius: 24,
+        padding: spacing.xl,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.4)',
+        borderColor: 'rgba(255, 255, 255, 0.5)',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.15,
-        shadowRadius: 8,
-        elevation: 5,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.18,
+        shadowRadius: 10,
+        elevation: 6,
         marginHorizontal: spacing.xs,
+        minHeight: 140,
     },
     statContent: {
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: 100, // Increased for better text display
+        minHeight: 120,
+        paddingHorizontal: spacing.sm,
     },
     statEmoji: {
         fontSize: 28,
         marginBottom: spacing.xs,
     },
     statNumber: {
-        ...typography.h3,
+        ...typography.h2,
         color: colors.onSurface,
-        fontWeight: '700',
+        fontWeight: '800',
         marginBottom: spacing.xs,
     },
     statLabel: {
         ...typography.caption,
         color: colors.onSurfaceVariant,
-        fontWeight: '500',
+        fontWeight: '600',
         textAlign: 'center',
+        letterSpacing: 0.5,
     },
     // Quick Mood Selector
     quickMoodCard: {

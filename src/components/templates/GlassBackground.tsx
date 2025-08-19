@@ -1,14 +1,14 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions, ImageBackground } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { colors, dimensions, spacing } from '../../theme/materialDesign';
+import React from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { colors, spacing } from '../../theme/materialDesign';
 
 interface MaterialBackgroundProps {
     children: React.ReactNode;
     gradient?: string[];
     style?: any;
-    variant?: 'vibrant' | 'subtle' | 'bold' | 'electric';
+    variant?: 'vibrant' | 'subtle' | 'bold' | 'electric' | 'neutral';
     avoidTabBar?: boolean; // Add bottom padding to avoid tab bar
     pattern?: boolean; // Add geometric patterns
 }
@@ -33,6 +33,8 @@ const MaterialBackground: React.FC<MaterialBackgroundProps> = ({
                 return colors.gradients.electric;
             case 'subtle':
                 return colors.gradients.warm;
+            case 'neutral':
+                return colors.gradients.neutralApp;
             default:
                 return gradient;
         }

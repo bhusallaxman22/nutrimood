@@ -8,8 +8,20 @@
     "scheme": "nutritionapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "extra": {
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "This app uses HealthKit to access your health data for personalized nutrition suggestions.",
+        "NSHealthUpdateUsageDescription": "This app may update your health data with nutrition tracking information."
+      },
+      "entitlements": {
+        "com.apple.developer.healthkit": true
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +29,15 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.bhusallaxman22.nutritionapp"
+      "package": "com.bhusallaxman22.nutritionapp",
+      "permissions": [
+        "android.permission.ACTIVITY_RECOGNITION",
+        "com.google.android.gms.permission.FITNESS_ACTIVITY_READ",
+        "com.google.android.gms.permission.FITNESS_BODY_READ",
+        "com.google.android.gms.permission.FITNESS_BODY_SENSORS_READ",
+        "com.google.android.gms.permission.FITNESS_HEART_RATE_READ",
+        "com.google.android.gms.permission.FITNESS_SLEEP_READ"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +52,19 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "react-native-health",
+        {
+          "requiredPermissions": [
+            "HeartRate",
+            "RestingHeartRate",
+            "OxygenSaturation",
+            "Steps",
+            "ActiveEnergyBurned",
+            "SleepAnalysis"
+          ]
         }
       ]
     ],
